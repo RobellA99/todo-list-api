@@ -4,21 +4,21 @@ CREATE DATABASE `todo-list`;
 
 USE `todo-list`;
 
-CREATE TABLE `todo-categories` (
+CREATE TABLE `todo_categories` (
     `id` INT NOT NULL PRIMARY KEY, 
     `title` VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE `todo-items` (
+CREATE TABLE `todo_items` (
     `id` INT UNSIGNED NOT NULL PRIMARY KEY, 
     `name` VARCHAR(255) NOT NULL, 
     `description` TEXT NOT NULL,
     `length` INT,  
     `category_id` INT NOT NULL,
-    FOREIGN KEY (`category_id`) REFERENCES `todo-categories`(`id`) ON DELETE CASCADE
+    FOREIGN KEY (`category_id`) REFERENCES `todo_categories`(`id`) ON DELETE CASCADE
 );
 
-INSERT INTO `todo-categories` VALUES
+INSERT INTO `todo_categories` VALUES
 (1, 'Career & Learning'),
 (2, 'Health & Wellness'),
 (3, 'Creative Projects'),
@@ -26,7 +26,7 @@ INSERT INTO `todo-categories` VALUES
 (5, 'Home & Personal Life'),
 (6, 'Tech & Skills Practice');
 
-INSERT INTO `todo-items` (`id`, `category_id`, `name`, `description`, `length`) VALUES 
+INSERT INTO `todo_items` (`id`, `category_id`, `name`, `description`, `length`) VALUES 
 -- Career & Learning (id = 1)
 (1, 1, 'Update LinkedIn profile and résumé', 'Make sure to add necessary sections to profile and show correlating info on resume', 20),
 (2, 1, 'Apply to 3 new job postings', 'Look at saved job postings and complete applications', 60),
