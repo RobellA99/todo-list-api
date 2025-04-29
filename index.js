@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import categoryRoutes from "./routes/categoryRoutes.js";
+import itemRoutes from "./routes/itemRoutes.js";
 
 const PORT = process.env.PORT || 5050;
 
@@ -15,6 +16,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/category", categoryRoutes);
+app.use("/items", itemRoutes);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
