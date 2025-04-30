@@ -1,4 +1,4 @@
-function validateForm(data) {
+export default function validateForm(data) {
   if (!data.name || !data.length || !data.category_id) {
     return {
       success: false,
@@ -10,5 +10,3 @@ function validateForm(data) {
     data: data,
   };
 }
-
-export { validateForm };

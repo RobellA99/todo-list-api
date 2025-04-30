@@ -1,4 +1,5 @@
 import connection from "../utils/mysql.js";
+import validateForm from "../utils/helper.js";
 
 const getItems = async (_req, res) => {
   const sql = "SELECT * FROM todo_items";
@@ -54,4 +55,24 @@ const getItemsByCategory = async (req, res) => {
   }
 };
 
-export { getItems, getItemsByCategory };
+const addItem = async (req, res) => {
+  const formData = req.body;
+
+  const sql = "INSERT INTO todo_items SET ?";
+
+  const validationResult = validateForm(formData);
+
+  if (!validationResult.success) {
+    return res.status(400).json({ error: validationResult.error });
+  }
+
+  try {
+    const [results] = await connection.query(sql, [formData]);
+
+    res.status(201).json({ message: "Created Item" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export { getItems, getItemsByCategory, addItem };
